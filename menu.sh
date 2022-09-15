@@ -1,4 +1,4 @@
-
+#!/bin/sh 
 # User ccan change this version
 export PYTHON_VERSION=3.7.7
 export PYTHON_MAJOR=3
@@ -37,6 +37,15 @@ make
 sudo make install
 
 }
+function python_pip()
+{
+	curl -O https://bootstrap.pypa.io/get-pip.py
+	sudo /opt/python/${PYTHON_VERSION}/bin/python${PYTHON_MAJOR} get-pip.py
+
+}
+function npm_install()
+{
+  sudo ./install.sh 
 }
 function main_menu()
 {
