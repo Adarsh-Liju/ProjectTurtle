@@ -1,4 +1,9 @@
-# Just updates or refereshes
+
+# User ccan change this version
+export PYTHON_VERSION=3.7.7
+export PYTHON_MAJOR=3
+
+# Updates or refreshes everything
 function update_system()
 {
   sudo apt update
@@ -18,9 +23,18 @@ function important_lib()
 # Building Python from Source
 function python_build()
 {
-  # We can change version if its bad
-  wget https://www.python.org/ftp/python/3.8.4/Python-3.8.4.tgz
+curl -O https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
+tar -xvzf Python-${PYTHON_VERSION}.tgz
+cd Python-${PYTHON_VERSION}
 
+./configure \
+    --prefix=/opt/python/${PYTHON_VERSION} \
+    --enable-shared \
+    --enable-ipv6 \
+    LDFLAGS=-Wl,-rpath=/opt/python/${PYTHON_VERSION}/lib,--disable-new-dtags
+
+make
+sudo make install
 
 }
 }

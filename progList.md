@@ -27,3 +27,8 @@
 - ifstat - Tool to report network interface bandwidth
 - hdf5 - File format designed to store large amounts of data
 - Mactex - Full TeX Live distribution with GUI applications
+
+
+## Recommmended Programs
+
+{ TO BE FILLED BY MY3 }
