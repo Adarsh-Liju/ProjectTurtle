@@ -54,7 +54,11 @@ function python_pip()
 }
 function npm_install()
 {
-  curl -qL https://www.npmjs.com/install.sh | sh 
+  curl -qL https://www.npmjs.com/install.sh | sh
+}
+function volta_install()
+{
+    curl https://get.volta.sh | bash
 }
 function main_menu()
 {
