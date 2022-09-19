@@ -1,8 +1,17 @@
-#!/bin/sh 
+#!/bin/sh
 # User ccan change this version
 export PYTHON_VERSION=3.7.7
 export PYTHON_MAJOR=3
+function pre_requisite()
+{
+    sudo apt install curl wget 
+}
+function rust_install()
+{
 
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+}
 # Updates or refreshes everything
 function update_system()
 {
@@ -39,13 +48,13 @@ sudo make install
 }
 function python_pip()
 {
-	curl -O https://bootstrap.pypa.io/get-pip.py
+	cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3curl -O https://bootstrap.pypa.io/get-pip.py
 	sudo /opt/python/${PYTHON_VERSION}/bin/python${PYTHON_MAJOR} get-pip.py
 
 }
 function npm_install()
 {
-  sudo ./install.sh 
+  sudo ./install.sh
 }
 function main_menu()
 {
@@ -54,8 +63,6 @@ function main_menu()
   whiptail --msgbox --title "Project Turtle" "$wel_msg" 25 80 # you can also change the dimensions
   if (whiptail --title "Python 🐍" --yesno "Do you wish to install Python" 8 78); then
   echo "YES"
-  python
-  
   else
   echo "NO"
   fi
