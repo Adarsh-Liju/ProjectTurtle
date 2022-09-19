@@ -1,10 +1,10 @@
 #!/bin/sh
-# User ccan change this version
+# User can change this version
 export PYTHON_VERSION=3.7.7
 export PYTHON_MAJOR=3
 function pre_requisite()
 {
-    sudo apt install curl wget 
+    sudo apt install curl wget
 }
 function rust_install()
 {
@@ -54,11 +54,12 @@ function python_pip()
 }
 function npm_install()
 {
-  sudo ./install.sh
+  curl -qL https://www.npmjs.com/install.sh | sh 
 }
 function main_menu()
 {
 
+    # need some changes
   wel_msg="Welcome to Project Turtle\nThis Project's main blah blah  blah" # this part has to be completed 
   whiptail --msgbox --title "Project Turtle" "$wel_msg" 25 80 # you can also change the dimensions
   if (whiptail --title "Python 🐍" --yesno "Do you wish to install Python" 8 78); then
