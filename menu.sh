@@ -60,7 +60,7 @@ volta_install()
 }
 
 echo "Do you wish to install Python (Y/N)"
-read PYTHON_CHOICE
+read -r PYTHON_CHOICE
 case $PYTHON_CHOICE in
 
     Y)
@@ -71,4 +71,25 @@ case $PYTHON_CHOICE in
     N)
         echo "Skipping Python Install :-("
         ;;
+esac
+echo "Do you wish to install Rust (Y/N)"
+read -r RUST_CHOICE
+case $RUST_CHOICE in
+
+  Y)
+    echo "Installing Rust and Cargo :-)"
+    ;;
+  N)
+    echo "Skipping Rust and Cargo"
+    ;;
+esac
+
+echo "Do you wish to install Node.js and npm"
+read -r NPM_CHOICE
+case $NPM_CHOICE in
+
+  Y) echo "Installing Node.js and npm"
+     ;;
+  N) echp "Skipping Node.js and npm"
+     ;;
 esac
