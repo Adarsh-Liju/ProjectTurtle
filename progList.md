@@ -31,4 +31,4 @@
 
 ## Recommmended Programs
 
-{ TO BE FILLED BY MY3 }
+{ TO BE FILLED }
