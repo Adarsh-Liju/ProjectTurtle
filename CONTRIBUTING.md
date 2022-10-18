@@ -1,23 +1,31 @@
 # Contributing guidelines
 
+## Basic Structure
+```
+.
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── gui_requirements.txt
+├── menu.sh
+├── ml_requirements.txt
+└── progList.md
+```
+
+The above structure may change with request to pull requests
 ## Before contributing
 
-Welcome to [Project Turtle](https://github.com/Adarsh-Liju/ProjectTurtle)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
-
+Welcome to [Project Turtle](https://github.com/Adarsh-Liju/ProjectTurtle)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/Adarsh-Liju/ProjectTurtle/issues/new).
 ## Contributing
 
 ### Contributor
 
-We are very happy that you consider implementing algorithms and data structures for others! This repository is referenced and used by learners from all over the globe. Being one of our contributors, you agree and confirm that:
+We are very happy that you consider contributing for others! This repository is referenced and used by linux enthusiasts. Being one of our contributors, you agree and confirm that:
 
 - You did your work - no plagiarism allowed
-  - Any plagiarized work will not be merged.
+- Any plagiarized work will not be merged.
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
 - Your submitted work fulfils or mostly fulfils our styles and standards
-
-__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
-
-__Improving comments__ and __writing proper tests__ are also highly welcome.
 
 ### Contribution
 
