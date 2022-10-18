@@ -1,4 +1,4 @@
-##### Core scientific packages
+
 matplotlib==3.5.2
 numpy==1.23.0
 pandas==1.4.2
@@ -6,23 +6,23 @@ scipy==1.9.0
 
 
 
-##### Machine Learning packages
+
 scikit-learn==1.1.0
 
 
 
-##### TensorFlow-related packages
+
 tensorflow==2.9.0
 tensorboard==2.9.0
 
 
 
-##### Image manipulation packages
+
 Pillow==9.1.0
 pyglet==1.5.22
 scikit-image==0.19.2
 
 
 
-##### Miscellaneous packages
+
 joblib==1.1.0

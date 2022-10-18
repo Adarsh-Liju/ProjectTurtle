@@ -90,6 +90,6 @@ case $NPM_CHOICE in
 
   Y) echo "Installing Node.js and npm"
      ;;
-  N) echp "Skipping Node.js and npm"
+  N) echo "Skipping Node.js and npm"
      ;;
 esac
