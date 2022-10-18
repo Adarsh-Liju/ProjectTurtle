@@ -13,13 +13,13 @@ The entire interface is CLI based and is easy to use.
 
 The main shell script can be run using :
 
-```bash 
+```sh 
 bash menu.sh
 ```
 
 OR 
 
-```bash
+```sh
 ./menu.sh
 ```
 ## Future Additions
