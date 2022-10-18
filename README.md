@@ -25,7 +25,7 @@ OR
 ## Future Additions
 
 The future releases will add
-- A `requirements.txt` curated for the type of domain the user is working on
+- A `requirements.txt` curated for the type of domain the user is working on (this is under `dev` stage)
 - Addition of new languages like `Go` and `Julia`.
 
 ## Maintainer
