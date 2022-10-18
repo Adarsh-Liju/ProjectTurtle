@@ -1,10 +1,30 @@
-# project-turtle
+# ProjectTurtle
 
+> Please note that this script can only run on Debian/Ubuntu
+
+An AutoRicing script which acts as bootstrap for Linux users.
+<!-- blah blah -->
 ## Summary
-blah blah
+<!-- 
+blah blah -->
 ## Usage
-blah blah
-## Installation
-blah blah
+
+The entire interface is CLI based and is easy to use.
+
+The main shell script can be run using :
+
+```bash 
+bash menu.sh
+```
+
+OR 
+
+```bash
+./menu.sh
+```
 ## Feedback
 blah blah
+
+## Maintainer
+
+[Adarsh Liju Abraham](https://github.com/Adarsh-Liju)
