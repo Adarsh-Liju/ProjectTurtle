@@ -4,7 +4,7 @@ export PYTHON_VERSION=3.7.7
 export PYTHON_MAJOR=3
 pre_requisite()
 {
-    sudo apt install curl wget
+    sudo apt install curl wget cmake git
 }
 rust_install()
 {
@@ -25,7 +25,7 @@ important_lib()
 
   sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
        libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-       libncurses5-dev libncursesw5-dev xz-utils tk-dev
+       libncurses5-dev libncursesw5-dev xz-utils tk-dev 
 }
 # Building Python from Source
 python_build()
@@ -59,6 +59,9 @@ volta_install()
     curl https://get.volta.sh | bash
 }
 
+
+pre_requisite
+important_lib
 echo "Do you wish to install Python (Y/N)"
 read -r PYTHON_CHOICE
 case $PYTHON_CHOICE in
@@ -78,6 +81,7 @@ case $RUST_CHOICE in
 
   Y)
     echo "Installing Rust and Cargo :-)"
+    rust_install
     ;;
   N)
     echo "Skipping Rust and Cargo"
@@ -89,7 +93,9 @@ read -r NPM_CHOICE
 case $NPM_CHOICE in
 
   Y) echo "Installing Node.js and npm"
+    npm_install
      ;;
   N) echo "Skipping Node.js and npm"
      ;;
 esac
+
