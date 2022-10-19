@@ -3,6 +3,7 @@
 ## Before contributing
 
 Welcome to [Project Turtle](https://github.com/Adarsh-Liju/ProjectTurtle)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/Adarsh-Liju/ProjectTurtle/issues/new).
+
 ## Contributing
 
 ### Contributor
