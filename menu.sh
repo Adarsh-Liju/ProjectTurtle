@@ -60,8 +60,10 @@ volta_install()
 }
 
 
+update_system
 pre_requisite
 important_lib
+update_system
 echo "Do you wish to install Python (Y/N)"
 read -r PYTHON_CHOICE
 case $PYTHON_CHOICE in
