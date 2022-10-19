@@ -1,18 +1,5 @@
 # Contributing guidelines
 
-## Basic Structure
-```
-.
-├── CONTRIBUTING.md
-├── LICENSE
-├── README.md
-├── gui_requirements.txt
-├── menu.sh
-├── ml_requirements.txt
-└── progList.md
-```
-
-The above structure may change with request to pull requests
 ## Before contributing
 
 Welcome to [Project Turtle](https://github.com/Adarsh-Liju/ProjectTurtle)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/Adarsh-Liju/ProjectTurtle/issues/new).
