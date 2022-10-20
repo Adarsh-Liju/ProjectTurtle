@@ -62,7 +62,12 @@ volta_install()
 {
     curl https://get.volta.sh | bash
 }
-
+go_install()
+{
+  rm -rf /usr/local/go && \
+  wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+  sudo tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+}
 
 update_system
 pre_requisite
@@ -106,3 +111,13 @@ case $NPM_CHOICE in
      ;;
 esac
 
+echo "Do you wish to install Golang (Y/N)"
+read -r GO_CHOICE
+case $GO_CHOICE in
+
+  Y) echo "Installing Golang :-)"
+    go_install
+     ;;
+  N) echo "Skipping Node.js and npm"
+     ;;
+esac
