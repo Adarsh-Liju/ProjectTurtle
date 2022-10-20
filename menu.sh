@@ -52,7 +52,7 @@ python_pip()
 }
 node_install()
 {
-  curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+  sudo apt install nodejs
 }
 npm_install()
 {
