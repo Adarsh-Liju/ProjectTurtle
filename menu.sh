@@ -59,10 +59,6 @@ volta_install()
 {
     curl https://get.volta.sh | bash
 }
-go_install()
-{
-  # TODO: Add Go installation
-}
 
 update_system
 pre_requisite
