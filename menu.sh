@@ -50,6 +50,10 @@ python_pip()
 	sudo /opt/python/${PYTHON_VERSION}/bin/python${PYTHON_MAJOR} get-pip.py
 
 }
+node_install()
+{
+  curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+}
 npm_install()
 {
   curl -qL https://www.npmjs.com/install.sh | sh
@@ -90,11 +94,12 @@ case $RUST_CHOICE in
     ;;
 esac
 
-echo "Do you wish to install Node.js and npm"
+echo "Do you wish to install Node.js and npm (Y/N)"
 read -r NPM_CHOICE
 case $NPM_CHOICE in
 
-  Y) echo "Installing Node.js and npm"
+  Y) echo "Installing Node.js and npm :-)"
+    node_install
     npm_install
      ;;
   N) echo "Skipping Node.js and npm"
