@@ -30,24 +30,21 @@ important_lib()
 # Building Python from Source
 python_build()
 {
-curl -O https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
-tar -xvzf Python-${PYTHON_VERSION}.tgz
-cd Python-${PYTHON_VERSION}
-
-./configure \
-    --prefix=/opt/python/${PYTHON_VERSION} \
-    --enable-shared \
-    --enable-ipv6 \
-    LDFLAGS=-Wl,-rpath=/opt/python/${PYTHON_VERSION}/lib,--disable-new-dtags
-
-make
-sudo make install
+  # Downloading Python
+  wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
+  tar -xvf Python-$PYTHON_VERSION.tgz
+  cd Python-$PYTHON_VERSION
+  ./configure --enable-optimizations
+  make -j 8
+  sudo make altinstall
+  # To check the version
+  python$PYTHON_MAJOR -V
 
 }
 python_pip()
 {
-	cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3curl -O https://bootstrap.pypa.io/get-pip.py
-	sudo /opt/python/${PYTHON_VERSION}/bin/python${PYTHON_MAJOR} get-pip.py
+  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  /opt/python/${PYTHON_VERSION}/bin/python get-pip.py
 
 }
 node_install()
