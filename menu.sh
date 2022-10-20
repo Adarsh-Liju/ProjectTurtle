@@ -121,3 +121,15 @@ case $GO_CHOICE in
   N) echo "Skipping Node.js and npm"
      ;;
 esac
+
+echo "Do you wish to install Volta (Y/N)"
+read -r VOLTA_CHOICE
+case $VOLTA_CHOICE in
+
+  Y) echo "Installing Volta :-)"
+    volta_install
+     ;;
+  N) echo "Skipping Volta"
+     ;;
+esac
+
