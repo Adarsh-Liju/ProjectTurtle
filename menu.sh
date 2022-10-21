@@ -5,8 +5,9 @@ export PYTHON_MAJOR=3
 pre_requisite()
 {
     sudo apt install curl wget cmake git
-    pip3 install -r requirements 
 }
+    
+
 rust_install()
 {
 
@@ -48,6 +49,10 @@ python_pip()
   /opt/python/${PYTHON_VERSION}/bin/python get-pip.py
 
 
+}
+pip_req()
+{
+  pip3 install -r requirements.txt
 }
 node_install()
 {
