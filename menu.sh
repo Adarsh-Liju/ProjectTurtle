@@ -148,3 +148,19 @@ case $VOLTA_CHOICE in
      ;;
 esac
 
+echo "Do you wish to install Docker? (Y/N)"
+read -r DOCKER_CHOICE
+case $DOCKER_CHOICE in
+  Y) echo "Install Docker through Repository or Packages? (R/P)"
+    read -r DOCKER_INSTALLATION_CHOICE
+    case $DOCKER_INSTALLATION_CHOICE in
+      R) docker_install_repo
+          ;;
+      P) docker_installation_package
+          ;;
+    esac
+  N) echo "Skipping Docker Instalation"
+      ;;
+esac
+ 
+
