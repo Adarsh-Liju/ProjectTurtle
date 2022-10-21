@@ -1,10 +1,8 @@
 #!/bin/sh
 # User can change this version
-export PYTHON_VERSION=3.7.7
 export PYTHON_MAJOR=3
-
-#step 1 - Downloading prerequisites 
-#curl -client URL, is a command line tool that developers use to transfer data to and from a server
+# step 1 - Downloading prerequisites
+# curl -client URL, is a command line tool that developers use to transfer data to and from a server
 #Wget is the non-interactive network downloader which is used to download files from the server even when the user has not logged on to the system
 #The "cmake" executable is the CMake command-line interface
 pre_requisite()
@@ -37,29 +35,23 @@ important_lib()
        libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
        libncurses5-dev libncursesw5-dev xz-utils tk-dev 
 }
-# Building Python from Source
+# Installing Python
 python_build()
 {
-  # Downloading Python
-  wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
-  tar -xvf Python-$PYTHON_VERSION.tgz
-  cd Python-$PYTHON_VERSION
-  ./configure --enable-optimizations
-  make -j 8
-  sudo make altinstall
+  # Installation of python3
+  sudo apt install -y python3-dev python3-venv python3-pip
   # To check the version
   python$PYTHON_MAJOR -V
 
 }
-
-# Pip is a package management system for managing packages written in Python
 python_pip()
 {
-  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-  /opt/python/${PYTHON_VERSION}/bin/python get-pip.py
-
+  sudo apt install -y python3-pip
+  # To check the version
+  pip$PYTHON_MAJOR -V
 
 }
+
 
 pip_req()
 {
