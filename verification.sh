@@ -2,47 +2,63 @@
 python_verify()
 {
     python3 --version
-    if [ $? -q 0 ]; then
+    case $? in 
+
+    0)
         echo "Python has been installed successfully"
-    else
+        ;;
+    *)
         echo "Python installation failed"
-    fi
+        ;;
+    esac
 }
 rust_verify()
 {
     rustc --version
-    if [ $? -q 0 ]; then
+    case $? in
+    0)
         echo "Rust has been installed successfully"
-    else
+        ;;
+    *)
         echo "Rust installation failed"
-    fi
+        ;;
+    esac
 }
 node_verify()
 {
-    node --version
-    if [ $? -q 0 ]; then
+    node -v
+    case $? in
+    0)
         echo "Node has been installed successfully"
-    else
+        ;;
+    *)
         echo "Node installation failed"
-    fi
+        ;;
+    esac
 }
 volta_verify()
 {
     volta --version
-    if [ $? -q 0 ]; then
+    case $? in 
+    0)
         echo "Volta has been installed successfully"
-    else
+        ;;
+    *)
         echo "Volta installation failed"
-    fi
+        ;;
+    esac
 }
 docker_verify()
 {
     docker --version
-    if [ $? -q 0 ]; then
+    case $? in
+    0)
         echo "Docker has been installed successfully"
-    else
+        ;;
+    *)
         echo "Docker installation failed"
-    fi
+        ;;
+    esac
 }
 python_verify
 rust_verify
