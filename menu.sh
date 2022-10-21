@@ -15,6 +15,7 @@ rust_install()
 {
 
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source "$HOME/.cargo/env"
 
 }
 # Updates or refreshes everything . Gets the latest versions of available required software 
