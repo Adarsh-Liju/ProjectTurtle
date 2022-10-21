@@ -67,6 +67,34 @@ volta_install()
     curl https://get.volta.sh | bash
 }
 
+docker_prereq()
+{
+  sudo apt install gnome-terminal
+  sudo apt remove docker-desktop
+  rm -r $HOME/.docker/desktop
+  sudo rm /usr/local/bin/com.docker.cli
+  sudo apt purge docker-desktop
+}
+docker_install()
+{
+  docker_prereq()
+  sudo apt-get update
+  sudo apt-get install ./docker-desktop-<version>-<arch>.deb
+  echo "docker version"
+  docker compose version
+  docker version
+  echo "would you like to open docker on start? (Y/N)"
+  read -r DOCKER_STARTUP
+  case $DOCKER_STARTUP in 
+    
+      Y)
+        systemctl --user enable docker-desktop
+        ;;
+      N)
+        ;;
+  esac
+
+}
 update_system
 pre_requisite
 important_lib
@@ -121,3 +149,13 @@ case $VOLTA_CHOICE in
      ;;
 esac
 
+echo "Do you wish to install Docker (Y/N)"
+read -r DOCKER_CHOICE
+case $DOCKER_CHOICE in
+
+  Y) echo "Installing Docker :-)"
+    docker_install
+     ;;
+  N) echo "Skipping Docker"
+     ;;
+esac
