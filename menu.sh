@@ -1,20 +1,24 @@
 #!/bin/sh
 # User can change this version
-export PYTHON_VERSION=3.7.7
 export PYTHON_MAJOR=3
+# step 1 - Downloading prerequisites
+# curl -client URL, is a command line tool that developers use to transfer data to and from a server
+#Wget is the non-interactive network downloader which is used to download files from the server even when the user has not logged on to the system
+#The "cmake" executable is the CMake command-line interface
 pre_requisite()
 {
     sudo apt install curl wget cmake git
 }
     
-
+#This command is used to install rust . It does platform detection, downloads the installer and runs it.
 rust_install()
 {
 
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source "$HOME/.cargo/env"
 
 }
-# Updates or refreshes everything
+# Updates or refreshes everything . Gets the latest versions of available required software 
 update_system()
 {
   sudo apt update
@@ -24,36 +28,37 @@ update_system()
 important_lib()
 {
   # for apt systems
+  # build-essential has gcc compiler 
+  # readline is a method that reads each line of string or values from a standard input stream
+  # ncurses provides an API, allowing the programmer to write text-based user interface
 
   sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
        libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
        libncurses5-dev libncursesw5-dev xz-utils tk-dev 
 }
-# Building Python from Source
+# Installing Python
 python_build()
 {
-  # Downloading Python
-  wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
-  tar -xvf Python-$PYTHON_VERSION.tgz
-  cd Python-$PYTHON_VERSION
-  ./configure --enable-optimizations
-  make -j 8
-  sudo make altinstall
+  # Installation of python3
+  sudo apt install -y python3-dev python3-venv python3-pip
   # To check the version
   python$PYTHON_MAJOR -V
 
 }
 python_pip()
 {
-  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-  /opt/python/${PYTHON_VERSION}/bin/python get-pip.py
-
+  sudo apt install -y python3-pip
+  # To check the version
+  pip$PYTHON_MAJOR -V
 
 }
+
+
 pip_req()
 {
   pip3 install -r requirements.txt
 }
+
 docker_install_repo()
 {
   sudo apt-get install \
@@ -82,14 +87,27 @@ docker_install_package()
   sudo docker run SUCCESSFULLY INSTALLED
 }
 node_install()
-{
-  sudo apt install nodejs
-}
-npm_install()
-{
-  curl -qL https://www.npmjs.com/install.sh | sh
-}
+
+
+# volta is a javascript tool manager 
 volta_install()
+
+{
+    curl https://get.volta.sh | bash
+    volta install node 
+    volta install yarn 
+    volta install npm
+}
+
+docker_prereq()
+{
+  sudo apt install gnome-terminal
+  sudo apt remove docker-desktop
+  rm -r $HOME/.docker/desktop
+  sudo rm /usr/local/bin/com.docker.cli
+  sudo apt purge docker-desktop
+}
+docker_install()
 {
     curl https://get.volta.sh | bash
 }
@@ -146,16 +164,37 @@ julia_install()
   source ~/.bashrc
   julia
 }
+  docker_prereq()
+  sudo apt-get update
+  sudo apt-get install ./docker-desktop-<version>-<arch>.deb
+  echo "docker version"
+  docker compose version
+  docker version
+  echo "would you like to open docker on start? (Y/N)"
+  read -r DOCKER_STARTUP
+  case $DOCKER_STARTUP in 
+    
+      Y)
+        systemctl --user enable docker-desktop
+        ;;
+      N)
+        ;;
+  esac
 
+
+}
 update_system
 pre_requisite
 important_lib
 update_system
+
+
 echo "Do you wish to install Python (Y/N)"
 read -r PYTHON_CHOICE
 case $PYTHON_CHOICE in
 
     Y)
+    #no need to call functions with brackets in shell ...
         echo "Installing Python and PIP :-)"
         python_build
         python_pip
@@ -164,6 +203,7 @@ case $PYTHON_CHOICE in
         echo "Skipping Python Install :-("
         ;;
 esac
+# esac closes a case statement 
 echo "Do you wish to install Rust (Y/N)"
 read -r RUST_CHOICE
 case $RUST_CHOICE in
@@ -177,15 +217,14 @@ case $RUST_CHOICE in
     ;;
 esac
 
-echo "Do you wish to install Node.js and npm (Y/N)"
+echo "Do you wish to install Node.js , npm , yarn (Y/N)"
 read -r NPM_CHOICE
 case $NPM_CHOICE in
 
-  Y) echo "Installing Node.js and npm :-)"
-    node_install
-    npm_install
+  Y) echo "Installing Node.js , npm , yarn :-)"
+    volta_install
      ;;
-  N) echo "Skipping Node.js and npm"
+  N) echo "Skipping Node.js , npm , yarn"
      ;;
 esac
 
@@ -195,10 +234,18 @@ case $VOLTA_CHOICE in
 
   Y) echo "Installing Volta :-)"
     volta_install
+
+echo "Do you wish to install Docker (Y/N)"
+read -r DOCKER_CHOICE
+case $DOCKER_CHOICE in
+
+  Y) echo "Installing Docker :-)"
+    docker_install
+
      ;;
-  N) echo "Skipping Volta"
+  N) echo "Skipping Docker"
      ;;
-esac
+
 
 echo "Do you wish to install Docker? (Y/N)"
 read -r DOCKER_CHOICE
@@ -258,3 +305,4 @@ case $JULIA_CHOICE in
   N) echo "Skipping Julia"
      ;;
 esac
+
