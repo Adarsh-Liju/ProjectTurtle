@@ -6,6 +6,8 @@ pre_requisite()
 {
     sudo apt install curl wget cmake git
 }
+    
+
 rust_install()
 {
 
@@ -46,6 +48,11 @@ python_pip()
   curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
   /opt/python/${PYTHON_VERSION}/bin/python get-pip.py
 
+
+}
+pip_req()
+{
+  pip3 install -r requirements.txt
 }
 node_install()
 {
