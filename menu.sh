@@ -135,6 +135,17 @@ go_install_binary()
   source ~/.bash_profile
   go version
 }
+julia_install()
+{
+  wget https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.1-linux-x86_64.tar.gz
+  tar zxvf julia-1.8.1-linux-x86_64.tar.gz
+
+  nano ~/.bashrc
+    . . .
+  export PATH="$PATH:/home/sammy/julia-1.8.1/bin"
+  source ~/.bashrc
+  julia
+}
 
 update_system
 pre_requisite
@@ -237,3 +248,13 @@ case $GO_BINARY_CHOICE in
      ;;
 esac
 
+echo "Do you wish to install Julia (Y/N)"
+read -r JULIA_CHOICE
+case $JULIA_CHOICE in
+
+  Y) echo "Installing Julia :-)"
+    julia_install
+     ;;
+  N) echo "Skipping Julia"
+     ;;
+esac
