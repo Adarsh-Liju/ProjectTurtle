@@ -93,6 +93,48 @@ volta_install()
 {
     curl https://get.volta.sh | bash
 }
+go_install_snap()
+{
+  sudo snap install go --classic
+}
+go_install_apt()
+{
+  sudo apt update
+  sudo apt upgrade
+
+  sudo apt search golang-go
+  sudo apt search gccgo-go
+
+  sudo apt install golang-go
+}
+go_install_binary()
+{
+  VERSION="1.18.1" # go version
+  ARCH="amd64" # go archicture
+  curl -O -L "https://golang.org/dl/go${VERSION}.linux-${ARCH}.tar.gz"
+  wget -L "https://golang.org/dl/go${VERSION}.linux-${ARCH}.tar.gz"
+  ls -l
+
+  curl -sL https://golang.org/dl/ | grep -A 5 -w "go${VERSION}.linux-${ARCH}.tar.gz"
+
+  echo "b3b815f47ababac13810fc6021eb73d65478e0b2db4b09d348eefad9581a2334 *go${VERSION}.linux-${ARCH}.tar.gz" | shasum -a 256 --check
+
+  tar -xf "go${VERSION}.linux-${ARCH}.tar.gz"
+  ls -l
+  cd go/
+  ls -l
+  cd ..
+
+  sudo chown -R root:root ./go
+  sudo mv -v go /usr/local
+
+  vim ~/.bash_profile
+  export GOPATH=$HOME/go
+  export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+  source ~/.bash_profile
+  go version
+}
 
 update_system
 pre_requisite
@@ -136,7 +178,6 @@ case $NPM_CHOICE in
      ;;
 esac
 
-
 echo "Do you wish to install Volta (Y/N)"
 read -r VOLTA_CHOICE
 case $VOLTA_CHOICE in
@@ -162,5 +203,37 @@ case $DOCKER_CHOICE in
   N) echo "Skipping Docker Instalation"
       ;;
 esac
+
+echo "Do you wish to install GoLang using snap Package Installer? (Y/N)"
+read -r GO_SNAP_CHOICE
+case $GO_SNAP_CHOICE in
+
+  Y) echo "Installing GoLang :-)"
+    go_install_snap
+     ;;
+  N) echo "Skipping GoLang"
+     ;;
+esac
+
+echo "Do you wish to install GoLang using Apt package Installer?(Y/N)"
+read -r GO_APT_CHOICE
+case $GO_APT_CHOICE in
+
+  Y) echo "Installing GoLang :-)"
+    go_install_apt
+     ;;
+  N) echo "Skipping GoLang"
+     ;;
+esac
  
+ echo "Do you wish to install Go Binary? (Y/N)"
+read -r GO_BINARY_CHOICE
+case $GO_BINARY_CHOICE in
+
+  Y) echo "Installing GO Binary :-)"
+    go_install_binary
+     ;;
+  N) echo "Skipping GO Binary"
+     ;;
+esac
 
