@@ -59,21 +59,13 @@ pip_req()
   pip3 install -r requirements.txt
 }
 
-# The following 2 codes install node js and node package manager 
-node_install()
-{
-  sudo apt install nodejs
-}
-
-npm_install()
-{
-  curl -qL https://www.npmjs.com/install.sh | sh
-}
-
 # volta is a javascript tool manager 
 volta_install()
 {
     curl https://get.volta.sh | bash
+    volta install node 
+    volta install yarn 
+    volta install npm
 }
 
 docker_prereq()
@@ -138,27 +130,14 @@ case $RUST_CHOICE in
     ;;
 esac
 
-echo "Do you wish to install Node.js and npm (Y/N)"
+echo "Do you wish to install Node.js , npm , yarn (Y/N)"
 read -r NPM_CHOICE
 case $NPM_CHOICE in
 
-  Y) echo "Installing Node.js and npm :-)"
-    node_install
-    npm_install
-     ;;
-  N) echo "Skipping Node.js and npm"
-     ;;
-esac
-
-
-echo "Do you wish to install Volta (Y/N)"
-read -r VOLTA_CHOICE
-case $VOLTA_CHOICE in
-
-  Y) echo "Installing Volta :-)"
+  Y) echo "Installing Node.js , npm , yarn :-)"
     volta_install
      ;;
-  N) echo "Skipping Volta"
+  N) echo "Skipping Node.js , npm , yarn"
      ;;
 esac
 
