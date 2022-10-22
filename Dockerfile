@@ -1,6 +1,10 @@
-FROM ubuntu:latest #to run on latest ubuntu
-WORKDIR /ProjectTurtle #to set working directory
-COPY ./ProjectTurtle #to copy contents of current directory
-RUN apt-get -y update  && apt-get install -y python #to update os and setup python environment
-CMD ["./menu.sh"] #to run the following command when it boots
+# Get the latest ubuntu container
+FROM ubuntu:latest 
+# Selects the working directory
+WORKDIR /ProjectTurtle 
+# Copies the main shell scipt to Docker container
+COPY ./menu.sh ./menu.sh 
+RUN apt-get -y update 
+# Runs the script
+CMD ["./menu.sh"]
 
