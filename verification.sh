@@ -72,19 +72,39 @@ docker_verify()
         ;;
     esac
 }
-# first installation
-update_system
-pre_requisite
-important_lib
-update_system
-python_build
-python_pip
-rust_install
-volta_install
-docker_install
-# verification
+golang_verify()
+{
+    go version
+    case $? in
+    0)
+        echo "Golang has been installed successfully"
+        ;;
+    *)
+        echo "Golang installation failed"
+        echo "starting reinstall"
+        go_install_apt
+        ;;
+    esac
+}
+julia_verify()
+{
+    julia --version
+    case $? in
+    0)
+        echo "Julia has been installed successfully"
+        ;;
+    *)
+        echo "Julia installation failed"
+        echo "starting reinstall"
+        julia_install
+        ;;
+    esac
+}
+# calling the functions
 python_verify
 rust_verify
 node_verify
 volta_verify
 docker_verify 
+golang_verify
+julia_verify
