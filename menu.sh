@@ -138,6 +138,7 @@ case $DOCKER_CHOICE in
      ;;
   N) echo "Skipping Docker"
      ;;
+esac
 
 
 echo "Do you wish to install GoLang using Apt package Installer?(Y/N)"
