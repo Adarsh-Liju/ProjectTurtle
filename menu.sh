@@ -73,70 +73,16 @@ volta_install()
 }
 go_install_apt()
 {
-
   sudo apt search golang-go
   sudo apt search gccgo-go
-
   sudo apt install golang-go
-}
-go_install_binary()
-{
-  VERSION="1.18.1" # go version
-  ARCH="amd64" # go archicture
-  curl -O -L "https://golang.org/dl/go${VERSION}.linux-${ARCH}.tar.gz"
-  wget -L "https://golang.org/dl/go${VERSION}.linux-${ARCH}.tar.gz"
-  ls -l
-
-  curl -sL https://golang.org/dl/ | grep -A 5 -w "go${VERSION}.linux-${ARCH}.tar.gz"
-
-  echo "b3b815f47ababac13810fc6021eb73d65478e0b2db4b09d348eefad9581a2334 *go${VERSION}.linux-${ARCH}.tar.gz" | shasum -a 256 --check
-
-  tar -xf "go${VERSION}.linux-${ARCH}.tar.gz"
-  ls -l
-  cd go/
-  ls -l
-  cd ..
-
-  sudo chown -R root:root ./go
-  sudo mv -v go /usr/local
-
-  vim ~/.bash_profile
-  export GOPATH=$HOME/go
-  export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
-  source ~/.bash_profile
-  go version
 }
 julia_install()
 {
-  wget https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.1-linux-x86_64.tar.gz
-  tar zxvf julia-1.8.1-linux-x86_64.tar.gz
-
-  nano ~/.bashrc
-    . . .
-  export PATH="$PATH:/home/sammy/julia-1.8.1/bin"
-  source ~/.bashrc
-  julia
+  sudo bash -ci "$(curl -fsSL https://raw.githubusercontent.com/abelsiqueira/jill/main/jill.sh)"
 }
-  docker_prereq()
-  sudo apt-get update
-  sudo apt-get install ./docker-desktop-<version>-<arch>.deb
-  echo "docker version"
-  docker compose version
-  docker version
-  echo "would you like to open docker on start? (Y/N)"
-  read -r DOCKER_STARTUP
-  case $DOCKER_STARTUP in 
-    
-      Y)
-        systemctl --user enable docker-desktop
-        ;;
-      N)
-        ;;
-  esac
-
-
-}
+ 
+# Calling the functions
 update_system
 pre_requisite
 important_lib
@@ -182,12 +128,6 @@ case $NPM_CHOICE in
      ;;
 esac
 
-echo "Do you wish to install Volta (Y/N)"
-read -r VOLTA_CHOICE
-case $VOLTA_CHOICE in
-
-  Y) echo "Installing Volta :-)"
-    volta_install
 
 echo "Do you wish to install Docker (Y/N)"
 read -r DOCKER_CHOICE
@@ -195,37 +135,10 @@ case $DOCKER_CHOICE in
 
   Y) echo "Installing Docker :-)"
     docker_install
-
      ;;
   N) echo "Skipping Docker"
      ;;
 
-
-echo "Do you wish to install Docker? (Y/N)"
-read -r DOCKER_CHOICE
-case $DOCKER_CHOICE in
-  Y) echo "Install Docker through Repository or Packages? (R/P)"
-    read -r DOCKER_INSTALLATION_CHOICE
-    case $DOCKER_INSTALLATION_CHOICE in
-      R) docker_install_repo
-          ;;
-      P) docker_installation_package
-          ;;
-    esac
-  N) echo "Skipping Docker Instalation"
-      ;;
-esac
-
-echo "Do you wish to install GoLang using snap Package Installer? (Y/N)"
-read -r GO_SNAP_CHOICE
-case $GO_SNAP_CHOICE in
-
-  Y) echo "Installing GoLang :-)"
-    go_install_snap
-     ;;
-  N) echo "Skipping GoLang"
-     ;;
-esac
 
 echo "Do you wish to install GoLang using Apt package Installer?(Y/N)"
 read -r GO_APT_CHOICE
@@ -238,16 +151,6 @@ case $GO_APT_CHOICE in
      ;;
 esac
  
- echo "Do you wish to install Go Binary? (Y/N)"
-read -r GO_BINARY_CHOICE
-case $GO_BINARY_CHOICE in
-
-  Y) echo "Installing GO Binary :-)"
-    go_install_binary
-     ;;
-  N) echo "Skipping GO Binary"
-     ;;
-esac
 
 echo "Do you wish to install Julia (Y/N)"
 read -r JULIA_CHOICE
