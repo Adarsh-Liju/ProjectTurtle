@@ -1,5 +1,4 @@
 #!/bin/sh
-source menu.sh
 python_verify()
 {
     python3 --version
